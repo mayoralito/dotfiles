@@ -11,4 +11,16 @@ cd dotfiles/
 ```
 
 The installer will:
-- install brew and all dependencies inside of the Brewfile
+- Install oh-my-zsh
+- Install brew 
+- Brewfile
+- Suggestions to install other software
+
+Optionally you can install configurations by running 
+```bash
+./configurations.sh
+```
+
+
+
+

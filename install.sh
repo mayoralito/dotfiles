@@ -15,14 +15,19 @@ install_brew() {
     cd brew/;
     echo "Move to brew directiory: $(pwd)";
     brew bundle;
+    cd -
 }
 
-installer_two() {
-    echo "Installer two..."
-    cd brew;
-    echo "done! $(pwd)"
+installer_oh_my_zsh() {
+    echo "Installing oh-my-zsh from https://ohmyz.sh/#install";
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
+installer_others() {
+    echo "Download Sublime from https://www.sublimetext.com/download\nVersion not available on Brew, yet."
+    echo "Download and install Hack font: https://github.com/source-foundry/Hack"
+}
+
+installer_oh_my_zsh
 install_brew
-cd -
-installer_two
+installer_others
