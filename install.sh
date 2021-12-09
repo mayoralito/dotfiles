@@ -25,7 +25,10 @@ installer_oh_my_zsh() {
 
 installer_others() {
     echo "Download Sublime from https://www.sublimetext.com/download\nVersion not available on Brew, yet."
+    echo "how to install all plugins on Sublime Text, VS Code "
     echo "Download and install Hack font: https://github.com/source-foundry/Hack"
+    echo "Download Logitech Options - https://www.logitech.com/en-us/product/options"
+    
 }
 
 installer_oh_my_zsh
