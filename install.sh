@@ -9,7 +9,9 @@ install_brew() {
         echo "warning: brew is already installed, skipping installation."
     else
         echo "Running brew installer"
-        # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)";
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile;
+        eval "$(/opt/homebrew/bin/brew shellenv)";
     fi
     
     cd brew/;
