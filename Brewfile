@@ -30,3 +30,6 @@ cask 'vlc'
 cask 'zed'
 cask 'container'
 cask 'github-copilot-for-xcode'
+cask 'ngrok'
+
+#cask 'metasploit' --> review this and move it inside of a container base approach using `container` setup
