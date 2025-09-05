@@ -1,0 +1,80 @@
+#!/bin/bash
+
+set -e
+
+echo ''
+
+info () {
+  echo -e "\r  [ \033[00;34m..\033[0m ] $1"
+}
+
+success () {
+  echo -e "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+
+fail () {
+  echo -e  "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  echo ''
+  exit
+}
+
+setup_postman_macos() {
+  if ! command -v postman &> /dev/null
+  then
+    info 'Setting up Postman'
+
+    # Check if Postman is already installed
+    if [ -d "/Applications/Postman.app" ]; then
+      success 'Postman is already installed.'
+    else
+      download_postman_macos
+    fi
+  fi
+}
+
+setup_postman_linux() {
+    fail "This script is not designed for Linux. Please use the Postman installer for Linux."
+}
+
+download_postman_macos() {
+    if ! command -v curl &> /dev/null
+    then
+    fail "curl is not installed. Please install curl to proceed."
+    fi
+
+    info "Postman setup..."
+
+    # Define the URL and the target location
+    URL="https://dl.pstmn.io/download/version/10.17.0/osx"
+    TARGET_DIR="$HOME/Downloads"
+    FILENAME="Postman.zip"
+
+    info "Downloading Postman from $URL..."
+
+    # Download the file using curl
+    curl -L -o "$TARGET_DIR/$FILENAME" "$URL"
+
+    # Unzip the downloaded file
+    unzip "$TARGET_DIR/$FILENAME" -d "$TARGET_DIR"
+
+    # Move the Postman application to the /Applications folder
+    info "Moving Postman to /Applications..."
+    mv "$TARGET_DIR/Postman.app" /Applications/
+
+    # Clean up by removing the downloaded zip file
+    info "Cleaning up..."
+    rm "$TARGET_DIR/$FILENAME"
+
+    success "Postman has been downloaded and moved to /Applications."
+}
+
+# Review platform and call the right setup based on platform
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Call the function to download Postman for macOS
+    setup_postman_macos
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+    # Call the function to download Postman for Linux
+    setup_postman_linux
+else
+    fail "Unsupported OS type: $OSTYPE. This script is designed for macOS, Linux, or Windows."
+fi
