@@ -1,0 +1,41 @@
+# More at https://github.com/Homebrew/homebrew-bundle
+
+# 'brew tap'
+tap "homebrew/cask"
+tap "homebrew/cask-versions"
+
+# 'brew install --cask'
+brew "wget"
+cask "iterm2" 
+brew "node"
+brew "git" 
+brew "bash-completion"
+brew "bash-git-prompt"
+cask "postman"
+cask "the-unarchiver"
+cask "diffmerge"
+cask "caffeine"
+cask "dropbox"
+cask "spotify"
+cask "vlc"
+cask "virtualbox"
+cask "telegram"
+cask "whatsapp"
+cask "microsoft-teams"
+cask "keepassxc"
+cask "visual-studio-code"
+cask "mysqlworkbench"
+cask "slack"
+brew "cartgage"
+brew "charles"
+brew "gnupg"
+brew "openjdk"
+brew "hugo"
+
+# research more about `whalebrew`
+# whalebrew "whalebrew/wget"
+
+# Browser stuff
+cask "google-chrome"
+cask "firefox"
+
