@@ -40,4 +40,5 @@ fi
 current_battery_percentage=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
 current_battery_percentage="$current_battery_percentage%"
 
-printf "\033[1;92m%s (%s left - %s%%) \033[0m\n" "$emoji" "$time_left" "$current_battery_percentage"
+# printf "\033[1;92m%s (%s left - %s%%) \033[0m\n" "$emoji" "$time_left" "$current_battery_percentage"
+printf "\033[1;92m%s \033[0m\n" "$emoji"

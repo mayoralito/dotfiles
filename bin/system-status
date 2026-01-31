@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Function to display memory usage for macOS
+function get_memory_info_macos {
+    # Get total memory size
+    total_memory=$(sysctl -n hw.memsize)  # Total memory in bytes
+    total_memory_gb=$(echo "$total_memory / 1073741824" | bc)  # Convert bytes to GB
+
+    # Get memory stats
+    pages_free=$(vm_stat | awk '/Pages free/ {print $3}')
+    pages_active=$(vm_stat | awk '/Pages active/ {print $3}')
+    pages_inactive=$(vm_stat | awk '/Pages inactive/ {print $3}')
+    
+    # Calculate used memory (active + inactive)
+    used_memory=$((pages_active + pages_inactive))
+    used_memory_gb=$(echo "$used_memory / 4096" | bc)  # Convert pages to GB
+
+    printf "%.2f/%d GB\n" "$used_memory_gb" "$total_memory_gb"  # Output format
+}
+
+function check_memory(){
+    memory_free=$(vm_stat | awk '/free/ {print $3}' | sed 's/\.//')  # Free memory in pages
+    memory_total=$(sysctl -n hw.memsize)  # Total memory in bytes
+    memory_free_mb=$((memory_free * 4096 / 1024 / 1024))  # Convert to MB
+    memory_total_mb=$((memory_total / 1024 / 1024))  # Total memory in MB
+    printf "%.0f MB/%d MB\n" "$memory_free_mb" "$memory_total_mb"  # Output format
+}
+
+# Function to display memory usage for Linux
+function get_memory_info_linux {
+    free -h | awk '/^Mem:/ {printf "%.2f/%s GB\n", $3, $2}'
+}
+
+# Function to display system information
+function display_system_info {
+
+    # Get CPU usage
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        cpu_usage=$(top -l 1 | grep "CPU usage" | awk '{print $3}' | sed 's/%//')
+    else
+        cpu_usage=$(top -bn1 | grep "Cpu" | sed "s/.*, *$[0-9.]*$%* id.*/\1/" | awk '{print 100 - $1}')
+    fi
+
+    # Check if running on macOS or Linux
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        memory_info=$(check_memory)
+    else
+        memory_info=$(get_memory_info_linux)
+    fi
+
+    # Get disk usage
+    disk_usage=$(df -h / | awk 'NR==2 {print $3 "/" $2}')
+
+    # Output formatted information in a single line
+    printf "\033[1;92mCPU:%.2f | MEM:%s | DISK: %s\033[0m\n" \
+        "$cpu_usage" "$memory_info" "$disk_usage"
+}
+
+# Execute the function
+display_system_info

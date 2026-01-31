@@ -21,6 +21,8 @@ brew 'pandoc'
 brew 'weasyprint'
 brew 'ffmpeg'
 brew 'gpg'
+brew 'free'
+brew 'nvm'
 
 cask 'android-platform-tools'
 cask 'raycast'
@@ -31,5 +33,10 @@ cask 'zed'
 cask 'container'
 cask 'github-copilot-for-xcode'
 cask 'ngrok'
+
+cask 'librewolf' 
+# alternative (because of https://librewolf.net/docs/faq/#why-is-librewolf-marked-as-broken) 
+# brew install librewolf --no-quarantine
+
 
 #cask 'metasploit' --> review this and move it inside of a container base approach using `container` setup

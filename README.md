@@ -17,7 +17,8 @@ Manually downloaded:
 ```bash
 git clone git@github.com:mayoralito/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-script/bootstrap
+script/bootstrap                    # Basic setup (symlinks only)
+script/bootstrap --update-dependencies  # Full setup with Homebrew dependencies
 ```
 
 ### General notes

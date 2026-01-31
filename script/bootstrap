@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 #
 # bootstrap installs things.
+#
+# Usage: bootstrap [--update-dependencies]
+#
+# Options:
+#   --update-dependencies    Update and install Homebrew dependencies
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
@@ -8,6 +13,30 @@ DOTFILES_ROOT=$(pwd -P)
 set -e
 
 echo ''
+
+# Parse command line arguments
+UPDATE_DEPENDENCIES=false
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --update-dependencies)
+      UPDATE_DEPENDENCIES=true
+      shift
+      ;;
+    -h|--help)
+      echo "Usage: $0 [--update-dependencies]"
+      echo ""
+      echo "Options:"
+      echo "  --update-dependencies    Update and install Homebrew dependencies"
+      echo "  -h, --help              Show this help message"
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1"
+      echo "Use -h or --help for usage information"
+      exit 1
+      ;;
+  esac
+done
 
 info () {
   echo -e "\r  [ \033[00;34m..\033[0m ] $1"
@@ -140,8 +169,8 @@ install_dotfiles () {
 setup_gitconfig
 install_dotfiles
 
-# If we're on a Mac, let's install and setup homebrew.
-if [ "$(uname -s)" == "Darwin" ]
+# If we're on a Mac and update-dependencies flag is set, let's install and setup homebrew.
+if [ "$(uname -s)" == "Darwin" ] && [ "$UPDATE_DEPENDENCIES" == "true" ]
 then
   info "installing dependencies"
   if source bin/dot | while read -r data; do info "$data"; done
