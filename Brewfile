@@ -21,7 +21,6 @@ brew 'pandoc'
 brew 'weasyprint'
 brew 'ffmpeg'
 brew 'gpg'
-brew 'free'
 brew 'nvm'
 
 cask 'android-platform-tools'
