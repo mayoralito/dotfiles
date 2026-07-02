@@ -1,10 +1,14 @@
 cask_args appdir: '/Applications'
 
-tap "hashicorp/tap"
+# tap "hashicorp/tap"
+
+tap "anomalyco/tap"
+tap "xykong/tap"
+# tap "tw93/tap"
 
 brew 'wget'
-brew 'awscli'
-brew 'hashicorp/tap/terraform'
+# brew 'awscli'
+# brew 'hashicorp/tap/terraform'
 brew 'colima'
 brew 'docker'
 brew 'docker-compose'
@@ -22,6 +26,10 @@ brew 'weasyprint'
 brew 'ffmpeg'
 brew 'gpg'
 brew 'nvm'
+brew 'opencode'
+# brew 'mole' # istalled and run the free space option. Needs to review the github project. 
+brew 'ripgrep'
+brew 'gh'
 
 cask 'android-platform-tools'
 cask 'raycast'
@@ -32,10 +40,13 @@ cask 'zed'
 cask 'container'
 cask 'github-copilot-for-xcode'
 cask 'ngrok'
+cask 'dockdoor'
+cask 'flux-markdown'
+cask 'linearmouse'
 
-cask 'librewolf' 
+# cask 'librewolf' 
 # alternative (because of https://librewolf.net/docs/faq/#why-is-librewolf-marked-as-broken) 
 # brew install librewolf --no-quarantine
 
 
-#cask 'metasploit' --> review this and move it inside of a container base approach using `container` setup
+# cask 'metasploit' --> review this and move it inside of a container base approach using `container` setup

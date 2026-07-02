@@ -26,7 +26,7 @@ alias ge='git-edit-new'
 alias gbr='git branch'
 alias gst='git status'
 alias glgb="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches"
-alias gh="git log --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias ghistory="git log --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias ga="git log --pretty='%C(Yellow)%h  %C(reset)%ad (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s' --date=short"
 alias git-file-stats="git show --stat --oneline # it show --stat --oneline HEAD^^..HEAD"
 alias git-br-stats="git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)"
